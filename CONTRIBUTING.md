@@ -3,7 +3,7 @@ Contributing · MD
  
 Bu proje, Sunucu – İstemci – İstemci mimarisinde çalışan, güvensiz ve güvenli (AES-128) modları olan bir haberleşme sistemidir. Anahtar dağıtımı için **RSA-2048, Diffie-Hellman (2048 bit), ECC (ECDH) ve Kyber (ML-KEM-768)** yöntemleri uygulanır; AES ise ayrıca **kütüphanesiz (manuel)** olarak kodlanır.
  
-Bu rehber, 3 kişilik ekibin aynı depoda düzenli çalışması için **branch**, **commit** ve **Pull Request** kurallarını tanımlar. Rapordaki "Görev Dağılımı ve GitHub commit özeti" bölümü doğrudan bu geçmişten üretileceği için kurallara uymak puanı da etkiler.
+Bu rehber, 3 kişilik ekibin aynı depoda düzenli çalışması için **branch**, **commit** ve **Pull Request** kurallarını tanımlar.
  
 ---
  
@@ -20,7 +20,7 @@ tür/alan/açıklama
 feat/kex-kyber/add-mlkem-encapsulation
 ```
  
-> Branch adlarında Türkçe karakter kullanılmaz; açıklama kısmı İngilizce veya ASCII Türkçe olabilir (ekip tek bir dilde karar verip sürdürmelidir).
+> Branch adlarında Türkçe karakter kullanılmaz; açıklama kısmı İngilizce veya ASCII Türkçe olabilir.
  
 ---
  
@@ -260,37 +260,4 @@ feat(kex-ecc): implement ECDH key exchange
 - [ ] README (kurulum / çalıştırma adımları) gerekiyorsa güncellendi
 - [ ] Depoya gizli anahtar veya kişisel veri eklenmedi
 ---
- 
-# 4. Depo Düzeni (Öneri)
- 
-Dil ve platform serbest olduğundan klasör adları ekibin seçimine göre uyarlanabilir; ancak bileşenlerin ayrı tutulması önerilir.
- 
-```
-.
-├── server/          # Sunucu uygulaması
-├── client/          # İstemci uygulaması
-├── crypto/
-│   ├── kex/         # RSA, DH, ECC, Kyber (ML-KEM)
-│   └── aes-manual/  # Kütüphanesiz AES-128 + karşılaştırma testleri
-├── bench/           # Anahtar üretme / değişim süresi ve paket boyutu ölçümleri
-├── captures/        # .pcapng dosyaları (her mod için en az bir tane)
-├── report/          # Rapor kaynakları ve şekiller
-├── CONTRIBUTING.md
-└── README.md        # Kurulum, hangi bilgisayarda hangi program çalışır
-```
- 
----
- 
-# 5. Ekip İçi Ek Kurallar
- 
-* **Kendi adınızla commit atın.** Rapordaki görev dağılımı tablosu ve commit özeti için herkes `git config user.name` ve `user.email` ayarını gerçek adıyla yapmalıdır. Özet şu komutla çıkarılabilir:
-```
-  git shortlog -sn --no-merges
-```
-* **Gizli bilgi paylaşılmaz.** Özel anahtarlar (RSA private key vb.), şifreler ve oturum anahtarları depoya eklenmez; `.gitignore` kullanın. Örnek/test anahtarları açıkça "test" olarak adlandırılmalıdır.
-* **Yakalama dosyaları (`.pcapng`)** `captures/` altında tutulur ve dosya adı modu ile yöntemi belirtir (ör. `secure-kyber-server-side.pcapng`, `insecure-client-side.pcapng`). Yakalamanın hangi bilgisayarda yapıldığı README veya rapordaki ekte belirtilir.
-* **Ölçüm sonuçları** (`kex-bench`) tekrarlanabilir olmalıdır: 10 ölçümün ortalaması alınır, hangi makinede ve hangi kütüphane sürümüyle ölçüldüğü not edilir.
-* **Manuel AES** değişiklikleri, kütüphaneli sonuçla karşılaştırma testi (`aes-compare`) geçmeden birleştirilmez.
-* **Küçük ve sık commit** atın; tek seferde devasa commit yapmayın.
- 
-Claude finished the response
+  
