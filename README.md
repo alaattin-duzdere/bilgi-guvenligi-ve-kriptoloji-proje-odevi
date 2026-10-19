@@ -73,28 +73,31 @@ Proje, **çok modüllü bir Maven projesidir.**
 
 ```
 .
-├── server/          # Sunucu uygulaması
-├── client/          # İstemci uygulaması
+├── pom.xml                  # Parent POM: Java sürümü ve Maven modülleri
+├── common/                  # Ortak mesaj protokolü, arayüzler ve sabitler
 ├── crypto/
-│   ├── kex/         # RSA, DH, ECC, Kyber (ML-KEM)
-│   └── aes/         # Kütüphanesiz AES-128 + karşılaştırma testleri
-├── bench/           # Anahtar üretme / değişim süresi ve paket boyutu ölçümleri
-├── captures/        # .pcapng dosyaları (her mod için en az bir tane)
-├── report/          # Rapor kaynakları ve şekiller
-├── CONTRIBUTING.md
-└── README.md        # Kurulum, hangi bilgisayarda hangi program çalışır
+│   ├── kex/                 # RSA, DH, ECDH ve Kyber (ML-KEM-768)
+│   └── aes/                 # Manuel AES-128 ve JCA/JCE tabanlı AES
+├── server/                  # Sunucu uygulaması
+├── client/                  # JavaFX istemci uygulaması
+├── bench/                   # Anahtar üretimi/değişimi ve paket boyutu ölçümleri
+├── captures/                # Wireshark .pcapng kayıtları
+├── report/                  # Teknik rapor kaynakları ve şekiller
+├── CONTRIBUTING.md           # Katkı ve commit kuralları
+└── README.md                 # Kurulum ve çalıştırma yönergeleri
 ```
 
 
 | Modül | İçerik | Bağımlılıkları |
 |-------|--------|----------------|
-| `common` | Mesaj formatı, `AesCipher` ve `KeyExchange` arayüzleri, sabitler | – |
-| `kex` | Dört anahtar dağıtım yönteminin uygulaması | `common` |
-| `aes` | `manual` paketi: elle kodlanmış AES-128 (varsayılan); `library` paketi: JCA/JCE tabanlı AES | `common` |
-| `server` | Bağlantı kabulü, mesaj çözme ve yeniden şifreleyip yönlendirme | `common`, `keyexchange`, `aes` |
-| `client` | JavaFX arayüzü, sunucu bağlantısı, metin/PDF gönderimi | `common`, `keyexchange`, `aes`, JavaFX |
+| `common` | Mesaj formatı, `AesCipher` ve `KeyExchange` arayüzleri, ortak sabitler | – |
+| `crypto/kex` | RSA-2048, Diffie-Hellman, ECDH ve Kyber (ML-KEM-768) anahtar dağıtım yöntemleri | `common` |
+| `crypto/aes` | `manual` paketi: elle kodlanmış AES-128 (varsayılan); `library` paketi: JCA/JCE tabanlı AES | `common` |
+| `server` | Bağlantı kabulü, mesaj çözme ve yeniden şifreleyip yönlendirme | `common`, `crypto/kex`, `crypto/aes` |
+| `client` | JavaFX arayüzü, sunucu bağlantısı, metin/PDF gönderimi | `common`, `crypto/kex`, `crypto/aes`, JavaFX |
+| `bench` | Anahtar üretim süresi, anahtar değişim süresi ve ağ paket boyutu ölçümleri | `common`, `crypto/kex` |
 
-`aes` modülündeki `manual` ve `library` paketleri aynı `AesCipher` arayüzünü uygular. Böylece uygulama hangisinin kullanıldığından bağımsız çalışır; varsayılan olarak `manual` seçilidir. Manuel AES'in doğruluğu, `library` ile karşılaştıran testlerle kontrol edilir.
+`crypto/aes` modülündeki `manual` ve `library` paketleri aynı `AesCipher` arayüzünü uygular. Böylece uygulama hangi AES uygulamasının kullanıldığından bağımsız çalışır; varsayılan olarak `manual` seçilidir. Manuel AES'in doğruluğu, `library` ile karşılaştıran testlerle kontrol edilir.
 
 ---
 
