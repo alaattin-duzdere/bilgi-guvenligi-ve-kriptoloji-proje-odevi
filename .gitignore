@@ -1,0 +1,29 @@
+# Maven derleme çıktıları
+target/
+*.class
+*.jar
+*.war
+dependency-reduced-pom.xml
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+out/
+
+# Diğer editörler
+.vscode/
+.classpath
+.project
+.settings/
+
+# İşletim sistemi dosyaları
+.DS_Store
+Thumbs.db
+
+# Log ve geçici dosyalar
+*.log
+*.tmp
+
+# Uygulamanın çalışırken kaydettiği dosyalar (sunucunun kaydettiği PDF'ler vb.)
+received/

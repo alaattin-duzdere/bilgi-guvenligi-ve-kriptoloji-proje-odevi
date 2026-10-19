@@ -88,6 +88,8 @@ Proje, **çok modüllü bir Maven projesidir.**
 ```
 
 
+
+
 | Modül | İçerik | Bağımlılıkları |
 |-------|--------|----------------|
 | `common` | Mesaj formatı, `AesCipher` ve `KeyExchange` arayüzleri, ortak sabitler | – |
