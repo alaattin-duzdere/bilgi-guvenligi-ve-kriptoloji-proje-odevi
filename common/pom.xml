@@ -9,6 +9,8 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
+    <name>Common Module</name>
     <artifactId>common</artifactId>
+    <packaging>jar</packaging>
 
 </project>
