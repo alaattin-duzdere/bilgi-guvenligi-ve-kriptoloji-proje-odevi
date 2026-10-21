@@ -11,4 +11,20 @@
 
     <artifactId>kex</artifactId>
 
+    <dependencies>
+        <!-- Ortak arayüzlere (KeyExchange vb.) erişim için common modülü -->
+        <dependency>
+            <groupId>tr.edu.ktu.securechat</groupId>
+            <artifactId>common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- Kyber (ML-KEM-768) desteği için Bouncy Castle -->
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk18on</artifactId>
+            <version>1.86</version>
+        </dependency>
+    </dependencies>
+
 </project>
